@@ -1,5 +1,7 @@
 # Meeting Audio Notes
 
+[![skills.sh](https://skills.sh/b/bystander563/meeting-audio-notes-skill)](https://skills.sh/bystander563/meeting-audio-notes-skill)
+
 面向中文会议录音的 Agent Skill：本地转写、结构化纪要、时间戳证据和后续细节追问。
 
 它不是功能最多的通用转写 CLI。它解决的是另一个问题：让 Agent 在总结后仍然保留可核查的会议记忆，而不是只输出一段容易丢失细节的摘要。
@@ -31,7 +33,13 @@
 
 ## 安装 Skill
 
-将 `meeting-audio-notes` 目录放入 Agent 的 skills 目录，例如：
+使用 Agent Skills CLI：
+
+```bash
+npx skills add bystander563/meeting-audio-notes-skill --skill meeting-audio-notes
+```
+
+也可以手动安装。将 `meeting-audio-notes` 目录放入 Agent 的 skills 目录，例如：
 
 ```text
 ~/.codex/skills/meeting-audio-notes
@@ -110,4 +118,3 @@ python -m unittest discover -s tests -v
 ## License
 
 MIT
-
