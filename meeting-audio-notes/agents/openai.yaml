@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 会议纪要"
+  short_description: "转写音视频、生成结构化会议纪要，并支持带时间戳证据的细节追问"
+  default_prompt: "Use $meeting-audio-notes to transcribe this recording, create Chinese meeting minutes, and retain timestamped evidence for follow-up questions."
