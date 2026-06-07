@@ -1,8 +1,8 @@
 # Meeting Audio Notes
 
-[![skills.sh](https://skills.sh/b/bystander563/meeting-audio-notes-skill)](https://skills.sh/bystander563/meeting-audio-notes-skill)
-
 面向中文会议录音的 Agent Skill：本地转写、结构化纪要、时间戳证据和后续细节追问。
+
+[![skills.sh](https://skills.sh/b/bystander563/meeting-audio-notes-skill)](https://skills.sh/bystander563/meeting-audio-notes-skill)
 
 它不是功能最多的通用转写 CLI。它解决的是另一个问题：让 Agent 在总结后仍然保留可核查的会议记忆，而不是只输出一段容易丢失细节的摘要。
 
