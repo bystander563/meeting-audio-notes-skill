@@ -25,7 +25,10 @@ Use a separate output directory per recording:
   "C:\path\meeting.m4a" `
   --output-dir "C:\path\meeting-notes" `
   --model large-v3 `
-  --language zh
+  --language zh `
+  --diarize `
+  --min-speakers 2 `
+  --max-speakers 5
 ```
 
 Model selection:
@@ -34,6 +37,9 @@ Model selection:
 - Use `medium` when the user prioritizes speed or the recording is long and clear.
 - Omit `--language` only when the language is genuinely unknown.
 - Pass `--device cpu --compute-type int8` only after CUDA fallback is needed.
+- Use `--diarize` for multi-speaker meetings when `HF_TOKEN` is configured.
+- Use `--num-speakers N` when the exact count is known; otherwise use `--min-speakers` and `--max-speakers`.
+- Use `--speaker-names "张伟,李娜"` only when anonymous speaker order has been verified. Never assume pyannote's `SPEAKER_00` ordering matches a participant list.
 
 The script writes:
 
@@ -42,6 +48,7 @@ The script writes:
 - `transcript.txt`: plain transcript.
 - `transcript.srt`: subtitle file.
 - `audio-info.json`: FFprobe metadata when available.
+- `speakers.json`: raw diarization turns and speaker metadata when `--diarize` is enabled.
 
 Do not delete the meeting package after summarizing. It is the memory used for follow-up questions.
 
@@ -59,7 +66,9 @@ Use `references/minutes-template.md`. Include only sections supported by the rec
 
 Add timestamp links as plain citations such as `[00:18:42]` or ranges such as `[00:18:42-00:19:15]`. Mark uncertain content as `待确认`, including uncertain speaker identity, owner, deadline, names, and numbers.
 
-Speaker labels from basic transcription may be unavailable. Never infer identity from ordering alone. If the user needs diarization, explain that it is an optional second-stage enhancement and ask for known participant names only when mapping anonymous speakers matters.
+Speaker diarization labels voices as `SPEAKER_00`, `SPEAKER_01`, and so on. It does not identify real people. Never infer identity from ordering alone. Map names only from explicit self-introductions, direct evidence in the recording, or user confirmation.
+
+When diarization is available, preserve speaker labels in decisions and action items. If the transcript says only “我负责”, report the anonymous speaker label unless identity is independently supported.
 
 ## Answer Follow-Up Questions
 

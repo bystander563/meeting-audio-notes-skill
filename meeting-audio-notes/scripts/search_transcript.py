@@ -44,7 +44,15 @@ def tokens(text: str) -> list[str]:
 
 
 def score_segment(segment: dict[str, Any], terms: list[str]) -> int:
-    text = chinese_to_simplified(segment.get("text", "")).casefold()
+    searchable = " ".join(
+        value
+        for value in (
+            segment.get("speaker", ""),
+            segment.get("text", ""),
+        )
+        if value
+    )
+    text = chinese_to_simplified(searchable).casefold()
     exact = sum((4 if term == terms[0] else 1) * text.count(term) for term in terms)
     fuzzy = 0
     try:
